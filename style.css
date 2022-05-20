@@ -1,0 +1,18 @@
+.list-group{
+    display: flex;
+    flex-direction: initial;
+    justify-content:space-between;
+    list-style: none;
+}
+.list-main{
+    font-weight: bold;
+    margin: auto;
+    
+}
+.list {
+    flex-grow: 1;
+    margin: auto;
+}
+.students-list {
+    margin: 50px auto;
+}
