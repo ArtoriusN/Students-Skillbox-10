@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students by Artur Saiakhov Skillbox 10</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+</head>
+<body>
+    <div class="container">
+        <main>
+          <!-- <div class="py-5 text-center">
+            <h2>Checkout form</h2>
+            <p class="lead">Text</p>
+          </div> -->
+          <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+              <h4 class="mb-3">Add student</h4>
+              <form class="needs-validation" novalidate="">
+                <div class="row g-3">
+                <div class="col-sm-4">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Valid first name is required.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Valid last name is required.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="middleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="middleName" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Valid middle name is required.
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="dateBirth" class="form-label">Date of Birth</label>
+                    <input id="dateBirth" type="date" min='1900-01-01' value="2000-12-31">
+                    <div class="invalid-feedback">
+                    Valid date of Birth is required.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="date" class="form-label">Starting year</label>
+                    <input id="date" type="number" min="2000" step="1" value="2018" />
+                    <div class="invalid-feedback">
+                    Valid starting year is required.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="faculty" class="form-label">Faculty</label>
+                    <input type="text" name="" id="faculty">
+                    <div class="invalid-feedback">
+                    Valid faculty is required.
+                    </div>
+                </div>
+                </div>
+                <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Add Student</button>
+              </form>
+            </div>
+          </div>
+        </main>
+      
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">© 2022 Artur Saiakhov</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
+      </div>
+<script>
+let studentsDef = [
+     { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
+     { sname: 'Сидорова', fname: 'Ивана', lname: 'Михайловна', bdate: '12.11.1994', startlearn: '2019', fac: 'Астрономии' },
+     { sname: 'Сорокина', fname: 'Мария', lname: 'Алексеевна', bdate: '01.01.1992', startlearn: '2008', fac: 'Математики' },
+     { sname: 'Андропов', fname: 'Александр', lname: 'Петрович', bdate: '3.10.1992', startlearn: '2003', fac: 'Информатики' },
+     { sname: 'Никифоров', fname: 'Олег', lname: 'Олегович', bdate: '24.12.1995', startlearn: '2021', fac: 'Химии' }
+ ];
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+//Устанавливаем для даты рождения максимально текущую дату id dateBirth
+dateBirth.max = new Date().toISOString().split("T")[0];
+//Устанавливаем для даты поступления максимально текущую дату id date
+date.max = new Date().getFullYear();
+</script>
+</body>
+</html>
