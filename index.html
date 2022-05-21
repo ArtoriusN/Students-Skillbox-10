@@ -67,7 +67,6 @@
                     Valid middle name is required.
                   </div>
                 </div>
-
                 <div class="col-sm-4">
                   <label for="dateBirth" class="form-label"
                     >Date of Birth</label
@@ -77,6 +76,7 @@
                     type="date"
                     min="1900-01-01"
                     value="2000-12-31"
+                    required
                   />
                   <div class="invalid-feedback">
                     Valid date of Birth is required.
@@ -90,6 +90,7 @@
                     min="2000"
                     step="1"
                     value="2018"
+                    required
                   />
                   <div class="invalid-feedback">
                     Valid starting year is required.
@@ -97,7 +98,7 @@
                 </div>
                 <div class="col-sm-4">
                   <label for="faculty" class="form-label">Faculty</label>
-                  <input type="text" name="" id="faculty" />
+                  <input type="text" id="faculty" name="" required />
                   <div class="invalid-feedback">Valid faculty is required.</div>
                 </div>
               </div>
@@ -133,6 +134,29 @@
       </footer>
     </div>
     <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
       let validated;
       let studentsDef = [
         {
@@ -287,23 +311,27 @@
             }
             form.classList.add("was-validated");
           });
-          console.log("клик");
-          let firstName = document.getElementById("firstName").value;
-          let lastName = document.getElementById("lastName").value;
-          let middleName = document.getElementById("middleName").value;
-          let dateBirth = document.getElementById("dateBirth").value;
-          let date = document.getElementById("date").value;
-          let faculty = document.getElementById("faculty").value;
-          studentsDef.push({
-            sname: firstName,
-            fname: lastName,
-            lname: middleName,
-            bdate: dateBirth,
-            startlearn: date,
-            fac: faculty,
-          });
-          console.log(studentsDef);
-          createStudentApp();
+
+          if (validated !== 0) {
+            console.log("клик");
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let middleName = document.getElementById("middleName").value;
+            let dateBirth = document.getElementById("dateBirth").value;
+            let date = document.getElementById("date").value;
+            let faculty = document.getElementById("faculty").value;
+            studentsDef.push({
+              sname: firstName,
+              fname: lastName,
+              lname: middleName,
+              bdate: dateBirth,
+              startlearn: date,
+              fac: faculty,
+            });
+            console.log(studentsDef);
+            createStudentApp();
+          }
+
           // { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
           // //игнорируем создание элемента если пользователь ничего не ввел в поле
           // if (!todoItemForm.input.value || todoItemForm.input.value.trim() === '') {
