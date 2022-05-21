@@ -1,213 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Students by Artur Saiakhov Skillbox 10</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <main>
-          <!-- <div class="py-5 text-center">
+      <main>
+        <!-- <div class="py-5 text-center">
             <h2>Checkout form</h2>
             <p class="lead">Text</p>
           </div> -->
-          <div class="row g-5">
-            <div class="col-md-7 col-lg-12">
-              <h4 class="mb-3">Add student</h4>
-              <form id="studentForm" class="needs-validation" novalidate="">
-                <div class="row g-3">
+        <div class="row g-5">
+          <div class="col-md-7 col-lg-12">
+            <h4 class="mb-3">Add student</h4>
+            <form id="studentForm" class="needs-validation" novalidate="">
+              <div class="row g-3">
                 <div class="col-sm-4">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid first name is required.
-                    </div>
+                  <label for="firstName" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
                 </div>
                 <div class="col-sm-4">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid last name is required.
-                    </div>
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
                 </div>
                 <div class="col-sm-4">
-                    <label for="middleName" class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="middleName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid middle name is required.
-                    </div>
+                  <label for="middleName" class="form-label">Middle Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="middleName"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid middle name is required.
+                  </div>
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="dateBirth" class="form-label">Date of Birth</label>
-                    <input id="dateBirth" type="date" min='1900-01-01' value="2000-12-31">
-                    <div class="invalid-feedback">
+                  <label for="dateBirth" class="form-label"
+                    >Date of Birth</label
+                  >
+                  <input
+                    id="dateBirth"
+                    type="date"
+                    min="1900-01-01"
+                    value="2000-12-31"
+                  />
+                  <div class="invalid-feedback">
                     Valid date of Birth is required.
-                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-4">
-                    <label for="date" class="form-label">Starting year</label>
-                    <input id="date" type="number" min="2000" step="1" value="2018" />
-                    <div class="invalid-feedback">
+                  <label for="date" class="form-label">Starting year</label>
+                  <input
+                    id="date"
+                    type="number"
+                    min="2000"
+                    step="1"
+                    value="2018"
+                  />
+                  <div class="invalid-feedback">
                     Valid starting year is required.
-                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-4">
-                    <label for="faculty" class="form-label">Faculty</label>
-                    <input type="text" name="" id="faculty">
-                    <div class="invalid-feedback">
-                    Valid faculty is required.
-                    </div>
+                  <label for="faculty" class="form-label">Faculty</label>
+                  <input type="text" name="" id="faculty" />
+                  <div class="invalid-feedback">Valid faculty is required.</div>
                 </div>
-                </div>
-                <hr class="my-4">
-                <button id='submit-button' class="w-100 btn btn-primary btn-lg" type="submit">Add Student</button>
-              </form>
-              <div id="students-list">
-                <ul class="list-group">
-                    <li class="list list-main">Full name</li>
-                    <li class="list list-main">Faculty</li>
-                    <li class="list list-main">Date of Birth</li>
-                    <li class="list list-main" id="year-study">Year of study</li>
-                </ul>
-                </div>
+              </div>
+              <hr class="my-4" />
+              <button
+                id="submit-button"
+                class="w-100 btn btn-primary btn-lg"
+                type="submit"
+              >
+                Add Student
+              </button>
+            </form>
+            <div class="students-list" id="students-list">
+              <ul class="list-group">
+                <li class="list list-main">Full name</li>
+                <li class="list list-main">Faculty</li>
+                <li class="list list-main">Date of Birth</li>
+                <li class="list list-main" id="year-study">Year of study</li>
+              </ul>
             </div>
           </div>
-          <!-- <div id="students-list"><ul class="list-group"></ul></div> -->
-          
-        </main>
-      
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-          <p class="mb-1">© 2022 Artur Saiakhov</p>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-          </ul>
-        </footer>
-      </div>
-<script>
-    let validated;
-    let studentsDef = [
-        { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
-        { sname: 'Сидорова', fname: 'Ивана', lname: 'Михайловна', bdate: '12.11.1994', startlearn: '2019', fac: 'Астрономии' },
-        { sname: 'Сорокина', fname: 'Мария', lname: 'Алексеевна', bdate: '01.01.1992', startlearn: '2008', fac: 'Математики' },
-        { sname: 'Андропов', fname: 'Александр', lname: 'Петрович', bdate: '3.10.1992', startlearn: '2003', fac: 'Информатики' },
-        { sname: 'Никифоров', fname: 'Олег', lname: 'Олегович', bdate: '24.12.1995', startlearn: '2021', fac: 'Химии' }
-    ];
+        </div>
+        <!-- <div id="students-list"><ul class="list-group"></ul></div> -->
+      </main>
 
-//Устанавливаем для даты рождения максимально текущую дату id dateBirth
-dateBirth.max = new Date().toISOString().split("T")[0];
-//Устанавливаем для даты поступления максимально текущую дату id date
-date.max = new Date().getFullYear();
-function createStudentItem(sname, fname, lname, bdate, startlearn, fac) {
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2022 Artur Saiakhov</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script>
+      let validated;
+      let studentsDef = [
+        {
+          sname: "Сидоров",
+          fname: "Иван",
+          lname: "Михайлович",
+          bdate: "2000-12-31",
+          startlearn: "2005",
+          fac: "Физики",
+        },
+        {
+          sname: "Сидорова",
+          fname: "Ивана",
+          lname: "Михайловна",
+          bdate: "1994-11-12",
+          startlearn: "2019",
+          fac: "Астрономии",
+        },
+        {
+          sname: "Сорокина",
+          fname: "Мария",
+          lname: "Алексеевна",
+          bdate: "1992-01-01",
+          startlearn: "2008",
+          fac: "Математики",
+        },
+        {
+          sname: "Андропов",
+          fname: "Александр",
+          lname: "Петрович",
+          bdate: "1992-10-03",
+          startlearn: "2003",
+          fac: "Информатики",
+        },
+        {
+          sname: "Никифоров",
+          fname: "Олег",
+          lname: "Олегович",
+          bdate: "1995-12-24",
+          startlearn: "2021",
+          fac: "Химии",
+        },
+      ];
+
+      //Устанавливаем для даты рождения максимально текущую дату id dateBirth
+      dateBirth.max = new Date().toISOString().split("T")[0];
+
+      //Устанавливаем для даты поступления максимально текущую дату id date
+      date.max = new Date().getFullYear();
+
+      //Считаем возраст студента
+      function getAge(dateString) {
+        let today = new Date();
+        // dateString = dateString.toISOString();
+        let birthDate = new Date(dateString);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        return age;
+      }
+
+      //вывод массива студентов
+      function createStudentItem(sname, fname, lname, bdate, startlearn, fac) {
         let course;
-        let studItemBox = document.createElement('ul');
-        studItemBox.classList.add('list-group');
-        let fullNameText = sname + ' ' + fname + ' ' + lname;
+        let newSemester = 0;
+        let studItemBox = document.createElement("ul");
+        studItemBox.classList.add("list-group");
+        let fullNameText = sname + " " + fname + " " + lname;
+        //если месяц больше августа то новый семестр, прибавляем курс
+        if (new Date().getMonth() > 7) {
+          newSemester++;
+        }
         if (+startlearn >= new Date().getFullYear() - 4) {
-            course = `${new Date().getFullYear() - +startlearn} курс`;
+          course = `${
+            new Date().getFullYear() - +startlearn + newSemester
+          } year`;
         } else {
-            course = 'закончил';
+          course = "graduated";
         }
         let yearStudyText = `${startlearn} - ${+startlearn + 4} (${course})`;
-        let fullName = document.createElement('li');
-        let faculty = document.createElement('li');
-        let bDate = document.createElement('li');
-        let yearStudy = document.createElement('li');
-        fullName.classList.add('list');
-        faculty.classList.add('list');
-        bDate.classList.add('list');
-        yearStudy.classList.add('list');
+        let age = `${bdate.split("-").reverse().join(".")} (${getAge(bdate)})`;
+        let fullName = document.createElement("li");
+        let faculty = document.createElement("li");
+        let bDate = document.createElement("li");
+        let yearStudy = document.createElement("li");
+        fullName.classList.add("list");
+        faculty.classList.add("list");
+        bDate.classList.add("list");
+        yearStudy.classList.add("list");
         fullName.textContent = fullNameText;
         faculty.textContent = fac;
-        bDate.textContent = bdate;
-        yearStudy.textContent = startlearn;
-        
+        bDate.textContent = age;
+        yearStudy.textContent = yearStudyText;
+
         //вкладываем кнопки в div для объединения
         studItemBox.append(fullName);
         studItemBox.append(faculty);
         studItemBox.append(bDate);
-        studItemBox.append(yearStudyText);
+        studItemBox.append(yearStudy);
 
         return {
-            studItemBox,
-            fullName,
-            faculty,
-            bDate,
-            yearStudy,
-        }
-    }
-    document.addEventListener("DOMContentLoaded", function() {
-            createStudentApp(document.getElementById('students-list'));
-        });
+          studItemBox,
+          fullName,
+          faculty,
+          bDate,
+          yearStudy,
+        };
+      }
+      //   document.addEventListener("DOMContentLoaded", function () {
+      //     createStudentApp(document.getElementById("students-list"));
+      //   });
+      createStudentApp();
 
-    // let studentItem = createStudentItem();
-    // container.append(todoItemForm.form);
-    //функция вывода в DOM
-    function createStudentApp(container) {
+      // let studentItem = createStudentItem();
+      // container.append(todoItemForm.form);
+      //функция вывода в DOM
+      function createStudentApp(container1) {
         //ЗДЕСЬ ТОЛЬКО ВЫВОДИМ ИЗ МАССИВА ОБЪЕКТОВ в DOM
-        
-        // { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
-        console.log('клик');
-        studentsDef.forEach(element => {
-            let studentItem = createStudentItem(element.sname, element.fname, element.lname, element.bdate, element.startlearn, element.fac)
-            container.append(studentItem.studItemBox);
-            // studentItem.studItemBox.append(studentItem.fullName);
-            
+        container = document.getElementById("students-list");
+        container.innerHTML = "";
+        studentsDef.forEach((element) => {
+          let studentItem = createStudentItem(
+            element.sname,
+            element.fname,
+            element.lname,
+            element.bdate,
+            element.startlearn,
+            element.fac
+          );
+          container.append(studentItem.studItemBox);
+          // studentItem.studItemBox.append(studentItem.fullName);
         });
+      }
 
-
-    }
-
-    document.getElementById('studentForm').addEventListener('submit', function (e) {
-        //ЗДЕСЬ ТОЛЬКО ДОБАВЛЯЕМ В МАССИВ ОБЪЕКТОВ
-        //предотвращаем стандартное действие браузера при отправке формы (перезагрузка страницы)
-        e.preventDefault();
-        const forms = document.querySelectorAll('.needs-validation')
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-        validated = 1;
-        if (!form.checkValidity()) {
-            e.stopPropagation()
-            validated = 0;
-        } else {
+      document
+        .getElementById("studentForm")
+        .addEventListener("submit", function (e) {
+          //ЗДЕСЬ ТОЛЬКО ДОБАВЛЯЕМ В МАССИВ ОБЪЕКТОВ
+          //предотвращаем стандартное действие браузера при отправке формы (перезагрузка страницы)
+          e.preventDefault();
+          const forms = document.querySelectorAll(".needs-validation");
+          // Loop over them and prevent submission
+          Array.from(forms).forEach((form) => {
             validated = 1;
-        }
-        form.classList.add('was-validated')
-        })
+            if (!form.checkValidity()) {
+              e.stopPropagation();
+              validated = 0;
+            } else {
+              validated = 1;
+            }
+            form.classList.add("was-validated");
+          });
+          console.log("клик");
+          let firstName = document.getElementById("firstName").value;
+          let lastName = document.getElementById("lastName").value;
+          let middleName = document.getElementById("middleName").value;
+          let dateBirth = document.getElementById("dateBirth").value;
+          let date = document.getElementById("date").value;
+          let faculty = document.getElementById("faculty").value;
+          studentsDef.push({
+            sname: firstName,
+            fname: lastName,
+            lname: middleName,
+            bdate: dateBirth,
+            startlearn: date,
+            fac: faculty,
+          });
+          console.log(studentsDef);
+          createStudentApp();
+          // { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
+          // //игнорируем создание элемента если пользователь ничего не ввел в поле
+          // if (!todoItemForm.input.value || todoItemForm.input.value.trim() === '') {
+          //     todoItemForm.input.value = '';
+          //     return;
+          // }
+          // let todoItem = createTodoItem(todoItemForm.input.value);
+          // objLocal = {
+          //     name: todoItemForm.input.value,
+          //     id: todoItem.idItem,
+          //     done: false,
+          // }
+          // returnArray = JSON.parse(localStorage.getItem(title));
+          // arrayItems = returnArray || [];
+          // arrayItems.push(objLocal);
+          // localStorage.setItem(title, JSON.stringify(arrayItems));
+          // addItemToDom(todoItem);
+          // //создаем и добавляем в список (ul) новое дело (li) с названием из поля ввода фармы
+          // // todoList.append(createTodoItem(todoItemForm.input.value).item);
 
-        
-
-        // //игнорируем создание элемента если пользователь ничего не ввел в поле
-        // if (!todoItemForm.input.value || todoItemForm.input.value.trim() === '') {
-        //     todoItemForm.input.value = '';
-        //     return;
-        // }
-        // let todoItem = createTodoItem(todoItemForm.input.value);
-        // objLocal = {
-        //     name: todoItemForm.input.value,
-        //     id: todoItem.idItem,
-        //     done: false,
-        // }
-        // returnArray = JSON.parse(localStorage.getItem(title));
-        // arrayItems = returnArray || [];
-        // arrayItems.push(objLocal);
-        // localStorage.setItem(title, JSON.stringify(arrayItems));
-        // addItemToDom(todoItem);
-        // //создаем и добавляем в список (ul) новое дело (li) с названием из поля ввода фармы
-        // // todoList.append(createTodoItem(todoItemForm.input.value).item);
-
-        // //обнуляем значение в поле ввода формы, чтобы пользователь не стирал
-        // todoItemForm.input.value = '';
-        // document.getElementById("input").focus();
-        // todoItemForm.button.disabled = true;
+          // //обнуляем значение в поле ввода формы, чтобы пользователь не стирал
+          // todoItemForm.input.value = '';
+          // document.getElementById("input").focus();
+          // todoItemForm.button.disabled = true;
         });
-</script>
-</body>
+    </script>
+  </body>
 </html>

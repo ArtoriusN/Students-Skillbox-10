@@ -1,219 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <div class="filter__container">
-            <h2>Показать студентов</h2>
-            <ul class="filter__list">
-                <li class="filter__list-item">
-                    <label for="">по ФИО</label>
-                    <input class="filter" type="text" id="inputFio">
-                </li>
-                <li class="filter__list-item">
-                    <label for="fac">по факультету</label>
-                    <input class="filter" type="text" id="inputFac">
-                </li>
-                <li class="filter__list-item">
-                    <label for="date-start">по году начала обучения </label>
-                    <input class="filter" type="text" id="inputDateStart">
-                </li>
-                <li class="filter__list-item">
-                    <label for="date-end">по году окончания обучения</label>
-                    <input class="filter" type="text" id="inputDateEnd">
-                </li>
-
-            </ul>
-        </div>
-        <form class="form">
-            <h2> Добавить студента</h2>
-            <ul class="list">
-                <li><label for="student__name">Имя</label>
-                    <input class="student" id="student__name" type="text"></li>
-                <li><label for="student__sname">Фамилия</label>
-                    <input class="student" id="student__sname" type="text"></li>
-                <li><label for="student__lname">Отчетство</label>
-                    <input class="student" id="student__lname" type="text"></li>
-                <li><label for="student__bdate">Дата рождения</label>
-                    <input class="student" id="student__bdate" type="date"></li>
-                <li><label for="student__startLearn">Год начала обучения</label>
-                    <input class="student" id="student__startLearn" type="text"></li>
-                <li><label for="student__faculty">Факультет</label>
-                    <input class="student" id="student__faculty" type="text"></li>
-                <button onclick="onAddStudent()" type="button" class="btn-add">Добавить судента</button>
-            </ul>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th onclick="sortColumn('fioObj')">ФИО</th>
-                    <th>Факультет</th>
-                    <th>Дата рождения</th>
-                    <th onclick="sortColumn('startlearn')">Год обучения</th>
-                </tr>
-            </thead>
-            <tbody id="mytable"></tbody>
-        </table>
+      <div class="filter__container">
+        <h2>Показать студентов</h2>
+        <ul class="filter__list">
+          <li class="filter__list-item">
+            <label for="">по ФИО</label>
+            <input class="filter" type="text" id="inputFio" />
+          </li>
+          <li class="filter__list-item">
+            <label for="fac">по факультету</label>
+            <input class="filter" type="text" id="inputFac" />
+          </li>
+          <li class="filter__list-item">
+            <label for="date-start">по году начала обучения </label>
+            <input class="filter" type="text" id="inputDateStart" />
+          </li>
+          <li class="filter__list-item">
+            <label for="date-end">по году окончания обучения</label>
+            <input class="filter" type="text" id="inputDateEnd" />
+          </li>
+        </ul>
+      </div>
+      <form class="form">
+        <h2>Добавить студента</h2>
+        <ul class="list">
+          <li>
+            <label for="student__name">Имя</label>
+            <input class="student" id="student__name" type="text" />
+          </li>
+          <li>
+            <label for="student__sname">Фамилия</label>
+            <input class="student" id="student__sname" type="text" />
+          </li>
+          <li>
+            <label for="student__lname">Отчетство</label>
+            <input class="student" id="student__lname" type="text" />
+          </li>
+          <li>
+            <label for="student__bdate">Дата рождения</label>
+            <input class="student" id="student__bdate" type="date" />
+          </li>
+          <li>
+            <label for="student__startLearn">Год начала обучения</label>
+            <input class="student" id="student__startLearn" type="text" />
+          </li>
+          <li>
+            <label for="student__faculty">Факультет</label>
+            <input class="student" id="student__faculty" type="text" />
+          </li>
+          <button onclick="onAddStudent()" type="button" class="btn-add">
+            Добавить судента
+          </button>
+        </ul>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortColumn('fioObj')">ФИО</th>
+            <th>Факультет</th>
+            <th>Дата рождения</th>
+            <th onclick="sortColumn('startlearn')">Год обучения</th>
+          </tr>
+        </thead>
+        <tbody id="mytable"></tbody>
+      </table>
     </div>
-<script>
- let sortDirections = {}
- const dateLimit = '2000';
- let array = [
-     { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
-     { sname: 'Сидорова', fname: 'Ивана', lname: 'Михайловна', bdate: '12.11.1994', startlearn: '2019', fac: 'Астрономии' },
-     { sname: 'Сорокина', fname: 'Мария', lname: 'Алексеевна', bdate: '01.01.1992', startlearn: '2008', fac: 'Математики' },
-     { sname: 'Андропов', fname: 'Александр', lname: 'Петрович', bdate: '3.10.1992', startlearn: '2003', fac: 'Информатики' },
-     { sname: 'Никифоров', fname: 'Олег', lname: 'Олегович', bdate: '24.12.1995', startlearn: '2021', fac: 'Химии' }
- ]
+    <script>
+      let sortDirections = {};
+      const dateLimit = "2000";
+      let array = [
+        {
+          sname: "Сидоров",
+          fname: "Иван",
+          lname: "Михайлович",
+          bdate: "23.12.1990",
+          startlearn: "2005",
+          fac: "Физики",
+        },
+        {
+          sname: "Сидорова",
+          fname: "Ивана",
+          lname: "Михайловна",
+          bdate: "12.11.1994",
+          startlearn: "2019",
+          fac: "Астрономии",
+        },
+        {
+          sname: "Сорокина",
+          fname: "Мария",
+          lname: "Алексеевна",
+          bdate: "01.01.1992",
+          startlearn: "2008",
+          fac: "Математики",
+        },
+        {
+          sname: "Андропов",
+          fname: "Александр",
+          lname: "Петрович",
+          bdate: "3.10.1992",
+          startlearn: "2003",
+          fac: "Информатики",
+        },
+        {
+          sname: "Никифоров",
+          fname: "Олег",
+          lname: "Олегович",
+          bdate: "24.12.1995",
+          startlearn: "2021",
+          fac: "Химии",
+        },
+      ];
+      //запуск функции вывода массива
+      buildTable(array);
+      //считаем возраст
+      function age(str) {
+        let [date, month, year] = str.match(/(\d+)/g);
+        --month;
+        let now = new Date();
+        let nowYear = now.getFullYear(),
+          nowMonth = now.getMonth(),
+          nowDate = now.getDate();
+        return nowYear - year - (0 > (nowMonth - month || nowDate - date));
+      }
+      //вывод массива
+      function buildTable(data) {
+        let table = document.getElementById("mytable");
+        table.innerHTML = "";
+        let html = "";
 
-
- buildTable(array)
-
- function age(str) {
-     let [date, month, year] = str.match(/(\d+)/g);
-     --month;
-     let now = new Date;
-     let nowYear = now.getFullYear(),
-         nowMonth = now.getMonth(),
-         nowDate = now.getDate();
-     return nowYear - year - (0 > (nowMonth - month || nowDate - date))
- };
-
- function buildTable(data) {
-     let table = document.getElementById('mytable')
-     table.innerHTML = '';
-     let html = ''
-
-     for (let i = 0; i < data.length; i++) {
-         let fioObj = data[i].sname + " " + data[i].fname + " " + data[i].lname;
-         let old = age(data[i].bdate)
-         let title = titleLearn(data[i].startlearn)
-         let row = `
+        for (let i = 0; i < data.length; i++) {
+          let fioObj =
+            data[i].sname + " " + data[i].fname + " " + data[i].lname;
+          let old = age(data[i].bdate);
+          let title = titleLearn(data[i].startlearn);
+          let row = `
         <tr>
         <td>${fioObj}</td>
         <td>${data[i].fac}</td>
         <td>${data[i].bdate} (${old})</td>
         <td>${title}</td>
         <tr/>
-        `
-         html += row
+        `;
+          html += row;
+        }
+        table.innerHTML = html;
+      }
+      //сортировка
+      function sortColumn(columnName) {
+        const dataType = !Number.isNaN(+array[0][columnName])
+          ? "number"
+          : "string";
+        if (!sortDirections[columnName]) {
+          sortDirections[columnName] = false;
+        }
+        sortDirections[columnName] = !sortDirections[columnName];
 
+        switch (dataType) {
+          case "number":
+            sortNumberColumn(sortDirections[columnName], columnName);
+            break;
+          case "string":
+            sortNumberColumn(sortDirections[columnName], columnName);
+            break;
+        }
+        buildTable(array);
+      }
+      //сортировка2
+      function sortNumberColumn(sort, columnName) {
+        array = array.sort((p1, p2) => {
+          return sort
+            ? p1[columnName] - p2[columnName]
+            : p2[columnName] - p1[columnName];
+        });
+      }
+      //добавление студента
+      function onAddStudent() {
+        const inputStudentName = document.getElementById("student__name").value;
+        const inputStudentSName =
+          document.getElementById("student__sname").value;
+        const inputStudentLName =
+          document.getElementById("student__lname").value;
+        const inputStudentBDate =
+          document.getElementById("student__bdate").value;
+        const inputStudentStLearn = document.getElementById(
+          "student__startLearn"
+        ).value;
+        const inputStudentFac =
+          document.getElementById("student__faculty").value;
 
-     }
-     table.innerHTML = html
- }
+        if (inputStudentStLearn.trim().toLowerCase() <= dateLimit) {
+          alert("is not a correct date");
+          return;
+        }
+        let newStudent = {
+          fname: inputStudentName,
+          sname: inputStudentSName,
+          lname: inputStudentLName,
+          bdate: inputStudentBDate,
+          startlearn: inputStudentStLearn,
+          fac: inputStudentFac,
+        };
+        console.log(newStudent);
+        //добавляем нового в массив
+        array.push(newStudent);
+        //запускаем функцию вывода массива
+        buildTable(array);
+      }
 
- function sortColumn(columnName) {
-     const dataType = !Number.isNaN(+array[0][columnName]) ? "number" : "string"
-     if (!sortDirections[columnName]) {
-         sortDirections[columnName] = false
-     }
-     sortDirections[columnName] = !sortDirections[columnName];
+      function titleLearn(str) {
+        let endYear = +str + 4;
+        let now = new Date();
+        let grade = now.getFullYear() - str;
 
-     switch (dataType) {
-         case 'number':
-             sortNumberColumn(sortDirections[columnName], columnName);
-             break;
-         case 'string':
-             sortNumberColumn(sortDirections[columnName], columnName);
-             break;
-     }
-     buildTable(array)
- }
+        let output;
+        if (grade > 4) {
+          output = `${str}-${endYear} (закончил)`;
+        } else {
+          output = `${str}-${endYear} (${grade} курс)`;
+        }
 
+        return output;
+      }
+      document
+        .querySelector(".filter__list")
+        .addEventListener("input", function () {
+          let arr = array.slice(0),
+            str = "";
+          if (inputFio.value.trim().toLowerCase()) {
+            let str = inputFio.value.trim().toLowerCase();
+            arr = arr.filter(({ sname, fname, lname }) =>
+              [sname, fname, lname].some((title) =>
+                title.toLowerCase().includes(str)
+              )
+            );
+          }
+          if (inputFac.value.trim().toLowerCase()) {
+            let str = inputFac.value.trim().toLowerCase();
+            arr = arr.filter(({ fac }) => fac.toLowerCase().includes(str));
+          }
+          if (inputDateStart.value.trim().toLowerCase()) {
+            let str = inputDateStart.value.trim().toLowerCase();
+            arr = arr.filter(({ startlearn }) => startlearn.slice(-4) == str);
+          }
+          if (inputDateEnd.value.trim().toLowerCase()) {
+            let str = inputDateEnd.value.trim().toLowerCase();
+            arr = arr.filter(
+              ({ startlearn }) => +startlearn.slice(-4) + 4 == str
+            );
+          }
 
-
- function sortNumberColumn(sort, columnName) {
-     array = array.sort((p1, p2) => {
-         return sort ? p1[columnName] - p2[columnName] : p2[columnName] - p1[columnName]
-     })
- }
-
-
- function onAddStudent() {
-
-     const inputStudentName = document.getElementById('student__name').value;
-     const inputStudentSName = document.getElementById('student__sname').value;
-     const inputStudentLName = document.getElementById('student__lname').value;
-     const inputStudentBDate = document.getElementById('student__bdate').value;
-     const inputStudentStLearn = document.getElementById('student__startLearn').value;
-     const inputStudentFac = document.getElementById('student__faculty').value;
-
-     if (inputStudentStLearn.trim().toLowerCase() <= dateLimit) {
-         alert('is not a correct date')
-         return
-     }
-     let newStudent = {
-         fname: inputStudentName,
-         sname: inputStudentSName,
-         lname: inputStudentLName,
-         bdate: inputStudentBDate,
-         startlearn: inputStudentStLearn,
-         fac: inputStudentFac,
-     }
-     console.log(newStudent);
-
-     array.push(newStudent);
-     buildTable(array);
-
- }
-
- function titleLearn(str) {
-     let endYear = +str + 4;
-     let now = new Date;
-     let grade = now.getFullYear() - str;
-
-     let output
-     if (grade > 4) {
-         output = `${str}-${endYear} (закончил)`
-     } else {
-         output = `${str}-${endYear} (${grade} курс)`
-     }
-
-     return output
- }
- document.querySelector('.filter__list').addEventListener("input", function() {
-     let arr = array.slice(0),
-         str = '';
-     if (inputFio.value.trim().toLowerCase()) {
-         let str = inputFio.value.trim().toLowerCase()
-         arr = arr.filter(({
-             sname,
-             fname,
-             lname
-         }) => [sname, fname, lname].some(title => title.toLowerCase().includes(str)))
-     }
-     if (inputFac.value.trim().toLowerCase()) {
-         let str = inputFac.value.trim().toLowerCase()
-         arr = arr.filter(({
-             fac
-         }) => fac.toLowerCase().includes(str))
-     }
-     if (inputDateStart.value.trim().toLowerCase()) {
-         let str = inputDateStart.value.trim().toLowerCase()
-         arr = arr.filter(({
-             startlearn
-         }) => startlearn.slice(-4) == str)
-     }
-     if (inputDateEnd.value.trim().toLowerCase()) {
-         let str = inputDateEnd.value.trim().toLowerCase()
-         arr = arr.filter(({
-             startlearn
-         }) => +startlearn.slice(-4) + 4 == str)
-     }
-
-     buildTable(arr)
- })
-</script>
-</body>
-
+          buildTable(arr);
+        });
+    </script>
+  </body>
 </html>

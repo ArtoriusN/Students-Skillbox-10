@@ -1,7 +1,5 @@
 .list-group{
-    display: flex;
-    flex-direction: initial;
-    justify-content:space-between;
+    display: table-row;
     list-style: none;
 }
 .list-main{
@@ -10,9 +8,13 @@
     
 }
 .list {
-    flex-grow: 1;
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid black;
+    width: 25%;
     margin: auto;
 }
 .students-list {
-    margin: 50px auto;
+    margin: 25px auto;
+    display: table;
 }
