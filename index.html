@@ -127,232 +127,226 @@
       </footer>
     </div>
     <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (() => {
-        "use strict";
+      document.addEventListener("DOMContentLoaded", function () {
+        let validated;
+        let copyStudentsDef;
+        let studentsDef = [
+          {
+            sname: "Сидоров",
+            fname: "Иван",
+            lname: "Михайлович",
+            bdate: "2000-12-31",
+            startlearn: "2005",
+            fac: "Физики",
+          },
+          {
+            sname: "Сидорова",
+            fname: "Ивана",
+            lname: "Михайловна",
+            bdate: "1994-11-12",
+            startlearn: "2019",
+            fac: "Астрономии",
+          },
+          {
+            sname: "Сорокина",
+            fname: "Мария",
+            lname: "Алексеевна",
+            bdate: "1992-01-01",
+            startlearn: "2008",
+            fac: "Математики",
+          },
+          {
+            sname: "Андропов",
+            fname: "Александр",
+            lname: "Петрович",
+            bdate: "1992-10-03",
+            startlearn: "2003",
+            fac: "Информатики",
+          },
+          {
+            sname: "Никифоров",
+            fname: "Олег",
+            lname: "Олегович",
+            bdate: "1995-12-24",
+            startlearn: "2021",
+            fac: "Химии",
+          },
+        ];
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll(".needs-validation");
+        //Устанавливаем для даты рождения максимально текущую дату id dateBirth
+        dateBirth.max = new Date().toISOString().split("T")[0];
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach((form) => {
-          form.addEventListener(
-            "submit",
-            (event) => {
-              if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
+        //Устанавливаем для даты поступления максимально текущую дату id date
+        date.max = new Date().getFullYear();
 
-              form.classList.add("was-validated");
-            },
-            false
-          );
-        });
-      })();
-      let validated;
-      let studentsDef = [
-        {
-          sname: "Сидоров",
-          fname: "Иван",
-          lname: "Михайлович",
-          bdate: "2000-12-31",
-          startlearn: "2005",
-          fac: "Физики",
-        },
-        {
-          sname: "Сидорова",
-          fname: "Ивана",
-          lname: "Михайловна",
-          bdate: "1994-11-12",
-          startlearn: "2019",
-          fac: "Астрономии",
-        },
-        {
-          sname: "Сорокина",
-          fname: "Мария",
-          lname: "Алексеевна",
-          bdate: "1992-01-01",
-          startlearn: "2008",
-          fac: "Математики",
-        },
-        {
-          sname: "Андропов",
-          fname: "Александр",
-          lname: "Петрович",
-          bdate: "1992-10-03",
-          startlearn: "2003",
-          fac: "Информатики",
-        },
-        {
-          sname: "Никифоров",
-          fname: "Олег",
-          lname: "Олегович",
-          bdate: "1995-12-24",
-          startlearn: "2021",
-          fac: "Химии",
-        },
-      ];
-
-      //Устанавливаем для даты рождения максимально текущую дату id dateBirth
-      dateBirth.max = new Date().toISOString().split("T")[0];
-
-      //Устанавливаем для даты поступления максимально текущую дату id date
-      date.max = new Date().getFullYear();
-
-      //Считаем возраст студента
-      function getAge(dateString) {
-        let today = new Date();
-        // dateString = dateString.toISOString();
-        let birthDate = new Date(dateString);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        let m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
+        //Считаем возраст студента
+        function getAge(dateString) {
+          let today = new Date();
+          // dateString = dateString.toISOString();
+          let birthDate = new Date(dateString);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          let m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          return age;
         }
-        return age;
-      }
 
-      //вывод массива студентов
-      function createStudentItem(sname, fname, lname, bdate, startlearn, fac) {
-        let course;
-        let newSemester = 0;
-        let studItemBox = document.createElement("ul");
-        studItemBox.classList.add("list-group", "group-students");
-        let fullNameText = sname + " " + fname + " " + lname;
-        //если месяц больше августа то новый семестр, прибавляем курс
-        if (new Date().getMonth() > 7) {
-          newSemester++;
+        //вывод массива студентов
+        function createStudentItem(
+          sname,
+          fname,
+          lname,
+          bdate,
+          startlearn,
+          fac
+        ) {
+          let course;
+          let newSemester = 0;
+          let studItemBox = document.createElement("ul");
+          studItemBox.classList.add("list-group", "group-students");
+          let fullNameText = sname + " " + fname + " " + lname;
+          //если месяц больше августа то новый семестр, прибавляем курс
+          if (new Date().getMonth() > 7) {
+            newSemester++;
+          }
+          if (+startlearn >= new Date().getFullYear() - 4) {
+            course = `${
+              new Date().getFullYear() - +startlearn + newSemester
+            } year`;
+          } else {
+            course = "graduated";
+          }
+          let yearStudyText = `${startlearn} - ${+startlearn + 4} (${course})`;
+          let age = `${bdate.split("-").reverse().join(".")} (${getAge(
+            bdate
+          )})`;
+          let fullName = document.createElement("li");
+          let faculty = document.createElement("li");
+          let bDate = document.createElement("li");
+          let yearStudy = document.createElement("li");
+          fullName.classList.add("list");
+          faculty.classList.add("list");
+          bDate.classList.add("list");
+          yearStudy.classList.add("list");
+          fullName.textContent = fullNameText;
+          faculty.textContent = fac;
+          bDate.textContent = age;
+          yearStudy.textContent = yearStudyText;
+
+          //вкладываем кнопки в div для объединения
+          studItemBox.append(fullName);
+          studItemBox.append(faculty);
+          studItemBox.append(bDate);
+          studItemBox.append(yearStudy);
+
+          return {
+            studItemBox,
+            fullName,
+            faculty,
+            bDate,
+            yearStudy,
+          };
         }
-        if (+startlearn >= new Date().getFullYear() - 4) {
-          course = `${
-            new Date().getFullYear() - +startlearn + newSemester
-          } year`;
-        } else {
-          course = "graduated";
-        }
-        let yearStudyText = `${startlearn} - ${+startlearn + 4} (${course})`;
-        let age = `${bdate.split("-").reverse().join(".")} (${getAge(bdate)})`;
-        let fullName = document.createElement("li");
-        let faculty = document.createElement("li");
-        let bDate = document.createElement("li");
-        let yearStudy = document.createElement("li");
-        fullName.classList.add("list");
-        faculty.classList.add("list");
-        bDate.classList.add("list");
-        yearStudy.classList.add("list");
-        fullName.textContent = fullNameText;
-        faculty.textContent = fac;
-        bDate.textContent = age;
-        yearStudy.textContent = yearStudyText;
 
-        //вкладываем кнопки в div для объединения
-        studItemBox.append(fullName);
-        studItemBox.append(faculty);
-        studItemBox.append(bDate);
-        studItemBox.append(yearStudy);
+        createStudentApp();
 
-        return {
-          studItemBox,
-          fullName,
-          faculty,
-          bDate,
-          yearStudy,
-        };
-      }
-
-      createStudentApp();
-
-      //функция вывода в DOM
-      function createStudentApp() {
-        //ЗДЕСЬ ТОЛЬКО ВЫВОДИМ ИЗ МАССИВА ОБЪЕКТОВ в DOM
-        let container = document.getElementById("students-list");
-        container.innerHTML = "";
-        container.innerHTML = `<ul class="list-group">
-                <li class="list list-main">Full name</li>
-                <li class="list list-main">Faculty</li>
-                <li class="list list-main">Date of Birth</li>
-                <li class="list list-main" id="year-study">Year of study</li>
+        //функция вывода в DOM
+        function createStudentApp() {
+          //ЗДЕСЬ ТОЛЬКО ВЫВОДИМ ИЗ МАССИВА ОБЪЕКТОВ в DOM
+          let container = document.getElementById("students-list");
+          container.innerHTML = "";
+          container.innerHTML = `<ul class="list-group" id='headStudent'>
+                <li class="list list-main" id='sname'>Full name</li>
+                <li class="list list-main" id='fac'>Faculty</li>
+                <li class="list list-main" id='bdate'>Date of Birth</li>
+                <li class="list list-main" id="startlearn">Year of study</li>
               </ul>`;
-        // container.append(tableHead);
-        studentsDef.forEach((element) => {
-          let studentItem = createStudentItem(
-            element.sname,
-            element.fname,
-            element.lname,
-            element.bdate,
-            element.startlearn,
-            element.fac
-          );
-          container.append(studentItem.studItemBox);
-          // studentItem.studItemBox.append(studentItem.fullName);
-        });
-      }
+          // container.append(tableHead);
+          studentsDef.forEach((element) => {
+            let studentItem = createStudentItem(
+              element.sname,
+              element.fname,
+              element.lname,
+              element.bdate,
+              element.startlearn,
+              element.fac
+            );
+            container.append(studentItem.studItemBox);
+            // studentItem.studItemBox.append(studentItem.fullName);
+          });
+        }
 
-      document
-        .getElementById("studentForm")
-        .addEventListener("submit", function (e) {
-          //ЗДЕСЬ ТОЛЬКО ДОБАВЛЯЕМ В МАССИВ ОБЪЕКТОВ
-          //предотвращаем стандартное действие браузера при отправке формы (перезагрузка страницы)
-          e.preventDefault();
-          const forms = document.querySelectorAll(".needs-validation");
-          // Loop over them and prevent submission
-          Array.from(forms).forEach((form) => {
-            validated = 1;
-            if (!form.checkValidity()) {
-              e.stopPropagation();
-              validated = 0;
-            } else {
-              validated = 1;
+        //сортировка массива объектов по указанному ключу
+        function sort(arr, param) {
+          return (sortArr = arr.sort(function (a, b) {
+            //   console.log(a[param], b[param]);
+            if (a[param] < b[param]) {
+              return -1;
             }
-            form.classList.add("was-validated");
+          }));
+        }
+
+        // document
+        //   .getElementById("startlearn")
+        //   .addEventListener("click", function (e) {
+        //     // let idInput = e.target.getAttribute("id");
+        //     // copyStudentsDef = [...studentsDef];
+        //     //указываем ключ по id (совпадают) и запускаем функцию сортировки
+        //     studentsDef = sort(studentsDef, "startlearn");
+        //     createStudentApp();
+        //   });
+
+        //отслеживаем нажатие на ul id headStudent
+        document
+          .getElementById("headStudent")
+          .addEventListener("click", function (e) {
+            let idInput = e.target.getAttribute("id");
+            studentsDef = sort(studentsDef, idInput);
+            createStudentApp();
           });
 
-          if (validated !== 0) {
-            console.log("клик");
-            let firstName = document.getElementById("firstName").value;
-            let lastName = document.getElementById("lastName").value;
-            let middleName = document.getElementById("middleName").value;
-            let dateBirth = document.getElementById("dateBirth").value;
-            let date = document.getElementById("date").value;
-            let faculty = document.getElementById("faculty").value;
-            studentsDef.push({
-              sname: firstName,
-              fname: lastName,
-              lname: middleName,
-              bdate: dateBirth,
-              startlearn: date,
-              fac: faculty,
+        //добавляем студента и перерисовываем вывод включая добавленного
+        document
+          .getElementById("studentForm")
+          .addEventListener("submit", function (e) {
+            //ЗДЕСЬ ТОЛЬКО ДОБАВЛЯЕМ В МАССИВ ОБЪЕКТОВ
+            //предотвращаем стандартное действие браузера при отправке формы (перезагрузка страницы)
+            e.preventDefault();
+            const forms = document.querySelectorAll(".needs-validation");
+            // Loop over them and prevent submission
+            Array.from(forms).forEach((form) => {
+              validated = 1;
+              if (!form.checkValidity()) {
+                e.stopPropagation();
+                validated = 0;
+              } else {
+                validated = 1;
+              }
+              form.classList.add("was-validated");
             });
-            console.log(studentsDef);
-            createStudentApp();
-          }
 
-          // { sname: 'Сидоров', fname: 'Иван', lname: 'Михайлович', bdate: '23.12.1990', startlearn: '2005', fac: 'Физики' },
-          // //игнорируем создание элемента если пользователь ничего не ввел в поле
-          // if (!todoItemForm.input.value || todoItemForm.input.value.trim() === '') {
-          //     todoItemForm.input.value = '';
-          //     return;
-          // }
-          // let todoItem = createTodoItem(todoItemForm.input.value);
-          // objLocal = {
-          //     name: todoItemForm.input.value,
-          //     id: todoItem.idItem,
-          //     done: false,
-          // }
-          // returnArray = JSON.parse(localStorage.getItem(title));
-          // arrayItems = returnArray || [];
-          // arrayItems.push(objLocal);
-          // localStorage.setItem(title, JSON.stringify(arrayItems));
-          // addItemToDom(todoItem);
-          // //создаем и добавляем в список (ul) новое дело (li) с названием из поля ввода фармы
-          // // todoList.append(createTodoItem(todoItemForm.input.value).item);
-
-          // //обнуляем значение в поле ввода формы, чтобы пользователь не стирал
-          // todoItemForm.input.value = '';
-          // document.getElementById("input").focus();
-          // todoItemForm.button.disabled = true;
-        });
+            if (validated !== 0) {
+              console.log("клик");
+              let firstName = document.getElementById("firstName").value;
+              let lastName = document.getElementById("lastName").value;
+              let middleName = document.getElementById("middleName").value;
+              let dateBirth = document.getElementById("dateBirth").value;
+              let date = document.getElementById("date").value;
+              let faculty = document.getElementById("faculty").value;
+              studentsDef.push({
+                sname: firstName,
+                fname: lastName,
+                lname: middleName,
+                bdate: dateBirth,
+                startlearn: date,
+                fac: faculty,
+              });
+              console.log(studentsDef);
+              createStudentApp();
+            }
+          });
+      });
     </script>
   </body>
 </html>
