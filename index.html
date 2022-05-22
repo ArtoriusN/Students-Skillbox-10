@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="container">
@@ -111,17 +112,9 @@
                 Add Student
               </button>
             </form>
-            <div class="students-list" id="students-list">
-              <ul class="list-group">
-                <li class="list list-main">Full name</li>
-                <li class="list list-main">Faculty</li>
-                <li class="list list-main">Date of Birth</li>
-                <li class="list list-main" id="year-study">Year of study</li>
-              </ul>
-            </div>
+            <div class="students-list" id="students-list"></div>
           </div>
         </div>
-        <!-- <div id="students-list"><ul class="list-group"></ul></div> -->
       </main>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -225,7 +218,7 @@
         let course;
         let newSemester = 0;
         let studItemBox = document.createElement("ul");
-        studItemBox.classList.add("list-group");
+        studItemBox.classList.add("list-group", "group-students");
         let fullNameText = sname + " " + fname + " " + lname;
         //если месяц больше августа то новый семестр, прибавляем курс
         if (new Date().getMonth() > 7) {
@@ -267,18 +260,21 @@
           yearStudy,
         };
       }
-      //   document.addEventListener("DOMContentLoaded", function () {
-      //     createStudentApp(document.getElementById("students-list"));
-      //   });
+
       createStudentApp();
 
-      // let studentItem = createStudentItem();
-      // container.append(todoItemForm.form);
       //функция вывода в DOM
-      function createStudentApp(container1) {
+      function createStudentApp() {
         //ЗДЕСЬ ТОЛЬКО ВЫВОДИМ ИЗ МАССИВА ОБЪЕКТОВ в DOM
-        container = document.getElementById("students-list");
+        let container = document.getElementById("students-list");
         container.innerHTML = "";
+        container.innerHTML = `<ul class="list-group">
+                <li class="list list-main">Full name</li>
+                <li class="list list-main">Faculty</li>
+                <li class="list list-main">Date of Birth</li>
+                <li class="list list-main" id="year-study">Year of study</li>
+              </ul>`;
+        // container.append(tableHead);
         studentsDef.forEach((element) => {
           let studentItem = createStudentItem(
             element.sname,
